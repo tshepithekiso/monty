@@ -39,6 +39,23 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct bus_s - variables -args, file, line content
+ * @arg: value
+ * @file: pointer to monty file
+ * @content: line content
+ * @lifi: flag change stack <-> queue
+ * Description: carries values through the program
+ */
+typedef struct bus_s
+{
+	char *arg;
+	FILE *file;
+	char *content;
+	int lifi;
+}  bus_t;
+extern bus_t bus;
+
 /*pull,pall.c */
 void t_pall(stack_t **head, unsigned int counter);
 void t_push(stack_t **head, unsigned int counter);
@@ -60,4 +77,43 @@ void t_nop(stack_t **head, unsigned int counter);
 
 /* sub */
 void t_sub(stack_t **head, unsigned int counter);
+/* div */
+void t_div(stack_t **head, unsigned int counter);
+
+/* mul */
+void t_mul(stack_t **head, unsigned int counter);
+
+/* mod */
+void t_mod(stack_t **head, unsigned int counter);
+
+/* pchar */
+void tt_pchar(stack_t **head, unsigned int counter);
+
+/* pstr */
+void tt_pstr(stack_t **head, unsigned int counter);
+
+/* rotl */
+void tt_rotl(stack_t **head,  __attribute__((unused)) unsigned int counter);
+
+/* rotr */
+void tt_rotr(stack_t **head, __attribute__((unused)) unsigned int counter);
+
+/* stack, queue, addqueue */
+void tt_queue(stack_t **head, unsigned int counter);
+void addqueue(stack_t **head, int n);
+void tt_stack(stack_t **head, unsigned int counter);
+
+/*addnode */
+void addnode(stack_t **head, int n);
+
+/* execute */
+int execute(char *content, stack_t **stack, unsigned int counter, FILE *file);
+
+/* free_stack */
+void free_stack(stack_t *head);
+char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
+ssize_t getstdin(char **lineptr, int file);
+char  *clean_line(char *content);
+int main(int argc, char *argv[]);
+
 #endif
